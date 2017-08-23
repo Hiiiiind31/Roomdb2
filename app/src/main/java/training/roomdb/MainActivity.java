@@ -25,15 +25,13 @@ public class MainActivity extends AppCompatActivity {
         usr.setUid(0);
         usr.setFirstName("hind");
         usr.setLastName("ahmed");
-    }
-
-    public void getdata(View v){
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
 
-        Toast.makeText(MainActivity.this,db.isOpen()+"",Toast.LENGTH_LONG).show();
         db.userDao().insertAll(usr);
-        txt.setText(db.userDao().getAll().get(0).getFirstName());
+        txt.setText(db.userDao().getAll().get(0).getLastName());
     }
+
+
 }
